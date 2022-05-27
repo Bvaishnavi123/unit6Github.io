@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 const Comments = ({ data }) => {
-  console.log("data:", data);
-  const [show, setShow] = useState(false);
+  // console.log("data:", data);
+  const [see, setSee] = useState(false);
 
   if (data.replies) {
     return (
@@ -10,10 +10,10 @@ const Comments = ({ data }) => {
         <div className="top">
           <div className="comm">
             <span
-              onClick={() => setShow(!show)}
+              onClick={() => setSee(!see)}
               style={{ cursor: "pointer", fontWeight: "bold" }}
             >
-              {show ? "hide replies" : "show replies"}
+              {see ? "hide replies" : "show replies"}
             </span>
             <div> {data.author}</div>
             <div> {data.points} points</div>
