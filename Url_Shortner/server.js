@@ -6,7 +6,7 @@ mongoose.connect('mongodb+srv://vaishnavi:vaishnavi@cluster0.eczcrmc.mongodb.net
    useNewUrlParser: true,
    useUnifiedTopology: true,
 })
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:true}))
 app.set('view engine','ejs')
 app.get('/',async(req,res)=>{
    const shorturls = await ShortUrl.find()
