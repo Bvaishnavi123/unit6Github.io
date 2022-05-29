@@ -25,7 +25,7 @@ const Comments = ({ data }) => {
           </div>
         </div>
 
-        <div style={{ display: show ? "block" : "none", paddingLeft: "5%" }}>
+        <div style={{ display: see ?"block" : "none", paddingLeft: "5%" }}>
           {data.replies.map((item) => {
             return <Comments data={item} />;
           })}
