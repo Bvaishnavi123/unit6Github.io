@@ -39,86 +39,70 @@
     {
       "id": 10,
       "country": "Philippines"
-    },
-    {
-      "country": [
-        "India"
-      ],
-      "id": 11
     }
+    
   ],
   "cities": [
     {
       "id": 1,
       "Country": "India",
       "City": "Delhi",
-      "Population": "19,000,000"
+      "Population": "19000000"
     },
     {
       "id": 2,
       "Country": "Sri Lanka",
       "City": "Colombo",
-      "Population": "5,600,000"
+      "Population": "5600000"
     },
     {
       "id": 3,
       "Country": "USA",
       "City": "Chicago",
-      "Population": "2,920,000"
+      "Population": "2920000"
     },
     {
       "id": 4,
       "Country": "India",
       "City": "Kolkata",
-      "Population": "14,900,000"
+      "Population": "14900000"
     },
     {
       "id": 5,
       "Country": "Russia",
       "City": "Moscow",
-      "Population": "11,900,000"
+      "Population": "11900000"
     },
     {
       "id": 6,
       "Country": "Korea",
       "City": "Seoul",
-      "Population": "9,780,000"
+      "Population": "780000"
     },
     {
       "id": 7,
       "Country": "Israel",
       "City": "Jerusalem",
-      "Population": "890,000"
+      "Population": "890000"
     },
     {
       "id": 8,
       "Country": "Japan",
       "City": "Tokyo",
-      "Population": "14,000,000"
+      "Population": "14000000"
     },
     {
       "id": 9,
       "Country": "Italy",
       "City": "Rome",
-      "Population": "2,870,000"
+      "Population": "2870000"
     },
     {
       "id": 10,
       "Country": "New Zealand",
       "City": "Wellington",
-      "Population": "215,900"
-    },
-    {
-      "Country": [
-        "India"
-      ],
-      "City": [
-        "Mumbai"
-      ],
-      "Population": [
-        "12345610"
-      ],
-      "id": 11
+      "Population": "215900"
     }
+   
   ]
 }

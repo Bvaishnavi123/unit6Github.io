@@ -16,7 +16,7 @@ export const AddCountry = ()=>{
         event.preventDefault();
          setCountry({
             ...Country,
-            [event.target.name] : [event.target.value]
+            [event.target.name] : event.target.value
         })
 
     }
