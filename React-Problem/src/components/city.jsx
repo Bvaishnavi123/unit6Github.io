@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react"
 import axios from 'axios'
-import {getAllCity, sortData,deleteCity,filterData} from '../redux/CityAction/action'
+import {Link} from 'react-router-dom'
+import {getAllCity, sortData,deleteCity,filterData, updateCity} from '../redux/CityAction/action'
 import {useDispatch , useSelector} from 'react-redux'
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +26,9 @@ export const City = ()=>{
         //console.log(e.target.value)
        dispatch(sortData(e.target.value))
     }
-  
+    const editHandler  = ()=>{
+
+    }
     return (
         <div>
             <button onClick={clickHandler}>ADD CITY</button>
@@ -54,7 +57,7 @@ export const City = ()=>{
                         <td>{e.Country}</td>
                         <td>{e.City}</td>
                         <td>{e.Population}</td>
-                        <td><button>EDIT</button></td>
+                      <Link to={`/add-city/${e.id}`}><td><button>EDIT</button></td></Link>  
                         <td><button onClick={()=>{dispatch(deleteCity(e.id))}}>DELETE</button></td>
                         </tr>
                         )

@@ -4,6 +4,7 @@ import './App.css'
 // import { City } from './components/city'
 import {Route,Routes} from 'react-router-dom'
 import { AddCountry } from './components/addCountry'
+import { UpdateCity } from './components/updateCity'
 
 import {Home} from './components/Home'
 import { AddCity } from './components/addCity'
@@ -15,6 +16,7 @@ function App() {
   < Routes>
   <Route path="/add-country" element={<AddCountry/>}></Route>
   <Route path="/add-city" element={<AddCity/>}></Route>
+  <Route path="/add-city/:id" element={<UpdateCity/>}></Route>
   <Route path='/' element={<Home/>} ></Route>
   
   </Routes>

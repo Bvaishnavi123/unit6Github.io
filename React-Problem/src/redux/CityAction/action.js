@@ -38,3 +38,7 @@ export const getAllCity = ()=> async(dispatch)=>{
     })
 
 }
+
+export const updateCity = (city,id)=>async(dispatch)=>{
+      axios.patch(`http://localhost:8000/cities/${id}`,city)
+}

@@ -40,20 +40,19 @@
       "id": 10,
       "country": "Philippines"
     }
-    
   ],
   "cities": [
     {
       "id": 1,
-      "Country": "India",
-      "City": "Delhi",
-      "Population": "19000000"
+      "Country": "Korea",
+      "City": "seoul",
+      "Population": "6545154"
     },
     {
       "id": 2,
-      "Country": "Sri Lanka",
-      "City": "Colombo",
-      "Population": "5600000"
+      "Country": "korea",
+      "City": "seoul",
+      "Population": "12345610"
     },
     {
       "id": 3,
@@ -93,7 +92,7 @@
     },
     {
       "id": 9,
-      "Country": "Italy",
+      "Country": "India",
       "City": "Rome",
       "Population": "2870000"
     },
@@ -102,7 +101,12 @@
       "Country": "New Zealand",
       "City": "Wellington",
       "Population": "215900"
+    },
+    {
+      "Country": "India",
+      "City": "Kadapa",
+      "Population": "458971",
+      "id": 11
     }
-   
   ]
 }
