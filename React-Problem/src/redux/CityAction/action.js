@@ -4,6 +4,7 @@ export const ADD_CITY  = "ADD_CITY"
 export const SORTDATA = 'SORTDATA'
 export const SORTDATADEC = 'SORTDATADEC'
 export const DELETECITY = "DELETECITY"
+export const FILTERDATA = 'FILTERDATA'
 
 export const addCity = (data)=>{
     return {
@@ -22,6 +23,12 @@ export const deleteCity = (id)=>{
     return {
         type : DELETECITY,
         payload : id
+    }
+}
+export const filterData = (value)=>{
+    return {
+        type : FILTERDATA,
+        payload : value
     }
 }
 

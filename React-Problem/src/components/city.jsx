@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react"
 import axios from 'axios'
-import {getAllCity, sortData,deleteCity} from '../redux/CityAction/action'
+import {getAllCity, sortData,deleteCity,filterData} from '../redux/CityAction/action'
 import {useDispatch , useSelector} from 'react-redux'
 import { useNavigate } from "react-router-dom";
 
@@ -16,8 +16,9 @@ export const City = ()=>{
         e.preventDefault()
         navigate('/add-city')
     }
-    const filterHandler = ()=>{
-        
+    const filterHandler = (e)=>{
+        e.preventDefault();
+        dispatch(filterData(e.target.value))
     }
     const SortingHandler = (e)=>{
         e.preventDefault()

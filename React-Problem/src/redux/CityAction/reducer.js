@@ -1,4 +1,4 @@
-import {ADD_CITY,SORTDATA,DELETECITY} from "./action"
+import {ADD_CITY,SORTDATA,DELETECITY,FILTERDATA} from "./action"
 
 const init = {
     city : []
@@ -18,7 +18,7 @@ export const CityReducer = (store=init,{type,payload})=>{
             }
         })}
         case DELETECITY : return {...store,city:[...store.city].filter((e)=>e.id!=payload)}
-      
+        case FILTERDATA : return {...store,city:store.city.filter((e)=>e.Country.includes(payload))}
         default : return  {...store}
     }
 }
