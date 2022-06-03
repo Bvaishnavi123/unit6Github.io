@@ -137,12 +137,7 @@ function initMap() {
     .addEventListener("click", function () {
       zoomToArea();
     });
-
-  
 }
-
-
-
 
 function showListings() {
   var bounds = new google.maps.LatLngBounds();
@@ -172,7 +167,3 @@ function makeMarkerIcon(markerColor) {
   );
   return markerImage;
 }
-
-
-
-
