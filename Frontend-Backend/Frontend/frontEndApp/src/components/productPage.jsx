@@ -7,7 +7,7 @@ export const ProductPage = ()=>{
     const [params,setParams] = useSearchParams();
      const [page , setPage] = useState(1)
     const [sort , setSort] = useState("1")
-    const [productBrand ,setProductBrand] = useState("");
+    const [productBrand ,setProductBrand] = useState([]);
     const [total,setTotal] = useState(null)
     //console.log(products)
     const getData =()=>{
