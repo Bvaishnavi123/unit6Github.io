@@ -2,15 +2,37 @@ const Product = require('../model/entity.model')
 const express = require('express')
 const router= express.Router()
 
+// router.get('/',async(req,res)=>{
+//   try {
+   
+
+//       const products = await Product.find().lean().exec()
+//       res.status(200).send(products)
+//   } catch (error) {
+//       res.status(404).send(error)
+//   }
+
+// })
+
 router.get('/',async(req,res)=>{
     try {
       const page = req.query.page || 1;
       const pageSize = req.query.pageSize || 10;
       const skip = (page-1)*pageSize
-
-      const totalPage = Math.ceil(await Product.find().countDocuments())
-
-        const products = await Product.find().skip(skip).limit(pageSize).lean().exec()
+      const sortVariable = req.query.sort || 1
+      if(sortVariable==1){
+        sort = {priceOfProduct:1}
+      }else{
+        sort = {priceOfProduct:-1}
+      }
+      const filter = {}
+      const productBrand = req.query.productBrand
+      if(productBrand){
+        filter.productBrand={$in:productBrand}
+      }
+      const totalPage = Math.ceil(await Product.find(filter).countDocuments()/pageSize)
+     
+      const products = await Product.find(filter).skip(skip).limit(pageSize).sort(sort).lean().exec()
         res.status(200).send({products:products,totalPage:totalPage})
     } catch (error) {
         res.status(404).send(error)
