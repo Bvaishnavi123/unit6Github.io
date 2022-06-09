@@ -17,7 +17,7 @@ router.post("/create" , async (req,res,next) => {
 
 router.get("/" , async(req,res) => {
     try{
-        const brands = await Brand.find().lean().exec()
+        const brands = await Brand.find().populate('product').lean().exec()
         return res.status(200).send(brands)
      }
      catch(err){
@@ -28,7 +28,7 @@ router.get("/" , async(req,res) => {
 
 router.get("/:id" , async(req,res) => {
     try{
-        const brands = await Brand.findById(req.params.id).lean().exec()
+        const brands = await Brand.findById(req.params.id).populate('product').lean().exec()
         return res.status(200).send(brands)
      }
      catch(err){

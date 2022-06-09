@@ -3,7 +3,7 @@ const Product = require("../model/product.model");
 
 const router = express.Router();
 
-router.post("/create", async (req, res, next) => {
+router.post("/create", async (req, res) => {
   try {
     const product = await Product.create(req.body);
     return res.status(200).send(product);
@@ -14,7 +14,7 @@ router.post("/create", async (req, res, next) => {
 
 router.get("/", async (req, res) => {
   try {
-    const product = await Product.find().lean().exec();
+    const product = await Product.find().populate('categoryId').lean().exec();
 
     return res.status(200).send(product);
   } catch (err) {
@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id).lean().exec();
+    const product = await Product.findById(req.params.id).populate('categoryId').lean().exec();
     return res.status(200).send(product);
   } catch (err) {
     return res.status(400).send({ message: err.message });

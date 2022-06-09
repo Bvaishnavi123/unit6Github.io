@@ -8,6 +8,9 @@ const ProductSchema= new mongoose.Schema({
     productName:{type:String,required:true},
     priceOfProduct :{type:Number,required:true},
     productBrand : {type:String,required:false},
+    categoryId:{type:mongoose.Schema.Types.ObjectId,
+    ref:'category',required:false
+}
 
 },{
     timestamps:true,
