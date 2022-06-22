@@ -14,7 +14,7 @@ function App() {
           path="/"
           element={
             user && user._id ? (
-              <Home user={user} setLoginUser={setLoginUser} />
+              <Home user={user} setLoginUser={setLoginUser}/>
             ) : (
               <Login setLoginUser={setLoginUser} />
             )
@@ -27,9 +27,7 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
       </Routes>
       
-      {/* <Home/> */}
-      {/* <Register/> */}
-      {/* <Login/> */}
+    
     </div>
   );
 }
