@@ -3,16 +3,19 @@ import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios"
 import {useNavigate} from 'react-router-dom'
+import {useEffect} from 'react'
+import jwt_decode from 'jwt-decode'
 import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
+
   FormHelperText,
   Input,
   InputRightElement,
   Button,
   InputGroup,
 } from "@chakra-ui/react";
+// import { GoogleAuth } from "../GoogleAuth/googleAuth";
 export const Login = (props) => {
   const navigate = useNavigate()
   const [show, setShow] = useState(false);
@@ -21,6 +24,25 @@ export const Login = (props) => {
     password: "",
   });
   const handleClick = () => setShow(!show);
+  function handleCallbackResponse(responce){
+    //console.log('Encoded JWT Id token:'+responce.credential);
+    var userID = jwt_decode(responce.credential);
+    //console.log('userID:',userID)
+    props.setgoogleAuthUser(userID)
+    navigate('/')
+}
+useEffect(()=>{
+    google.accounts.id.initialize({
+        client_id:'1018777173719-po881ts69fnll531n7v5ksti1g22v10t.apps.googleusercontent.com',
+        callback:handleCallbackResponse
+    })
+
+    google.accounts.id.renderButton(
+        document.getElementById('signInDiv'),
+        {theme:'outline'}
+    )
+
+},[])
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -46,7 +68,7 @@ export const Login = (props) => {
       rounded="md"
       bg="white"
       width="40%"
-      height={400}
+      height={500}
       align="center"
     >
       <h1>Login</h1>
@@ -81,6 +103,8 @@ export const Login = (props) => {
           Register
         </Button>
       </FormControl>
+      <br/>
+      <div id="signInDiv"></div>
     </Box>
   );
 };

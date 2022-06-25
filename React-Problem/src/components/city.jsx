@@ -57,7 +57,7 @@ export const City = ()=>{
                         <td>{e.Country}</td>
                         <td>{e.City}</td>
                         <td>{e.Population}</td>
-                      <Link to={`/add-city/${e.id}`}><td><button>EDIT</button></td></Link>  
+                        <Link to={`/add-city/${e.id}`}><td><button>EDIT</button></td></Link>  
                         <td><button onClick={()=>{dispatch(deleteCity(e.id))}}>DELETE</button></td>
                         </tr>
                         )
