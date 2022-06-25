@@ -1,9 +1,9 @@
 import {useEffect} from 'react'
 import jwt_decode from 'jwt-decode'
 export const GoogleAuth =(props)=>{
-    function handleCallbackResponse(responce){
-        console.log('Encoded JWT Id token:'+responce.credential);
-        var userID = jwt_decode(responce.credential);
+    function handleCallbackResponse(response){
+        console.log('Encoded JWT Id token:'+response.credential);
+        var userID = jwt_decode(response.credential);
         console.log('userID:',userID)
         props.setgoogleAuthUser(userID)
     }

@@ -24,9 +24,9 @@ export const Login = (props) => {
     password: "",
   });
   const handleClick = () => setShow(!show);
-  function handleCallbackResponse(responce){
+  function handleCallbackResponse(response){
     //console.log('Encoded JWT Id token:'+responce.credential);
-    var userID = jwt_decode(responce.credential);
+    var userID = jwt_decode(response.credential);
     //console.log('userID:',userID)
     props.setgoogleAuthUser(userID)
     navigate('/')
