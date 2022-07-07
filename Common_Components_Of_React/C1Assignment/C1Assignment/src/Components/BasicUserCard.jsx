@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { Avatar, WrapItem, Text, Center, Circle } from "@chakra-ui/react";
+
 import {
   Modal,
   ModalOverlay,
@@ -13,7 +14,7 @@ import {
 import { useState } from "react";
 import axios from "axios";
 export const UserCard = (props) => {
-  const { id, image, name, status, species, origin } = props.user;
+  const { id, image, name, status, species } = props.user;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [user, setUser] = useState({});
 
@@ -39,7 +40,7 @@ export const UserCard = (props) => {
     >
       <WrapItem>
         <Center>
-          <Avatar name="Dan Abrahmov" src={image} mr={5} />
+          <Avatar name="UserImg" src={image} mr={5} />
           <div style={{ width: "150px", textAlign: "left" }}>{name}</div>
           <Center>
             <div

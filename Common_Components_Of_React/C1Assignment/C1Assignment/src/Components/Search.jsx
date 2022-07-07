@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import { UserCard } from "./BasicUserCard";
 import { Alert, AlertIcon } from "@chakra-ui/react";
-import useInfiniteScroll from 'react-infinite-scroll-hook';
+import { AlertComponent } from "./Alert";
 
 function debounce(func, wait) {
   let timeout;
@@ -18,30 +18,60 @@ function debounce(func, wait) {
     }, wait);
   };
 }
+
 export const Search = () => {
   const [user, setUser] = useState([]);
   const [error, setError] = useState("");
+  const [page, setPage] = useState(1);
+  const [userName, setUserName] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const debounceOnChange = React.useCallback(debounce(onChange, 400), []);
 
+  const getData = (name) => {
+    axios
+      .get(
+        `https://rickandmortyapi.com/api/character/?name=${name}&page=${page}`
+      )
+      .then(({ data }) => {
+        // console.log("name", name);
+        // console.log(data.results);
+
+        setUser([...user, ...data.results]);
+        setLoading(false);
+      })
+      .catch((err) => {
+        // console.log(err.message);
+        setError(err.message);
+      });
+  };
   function onChange(name) {
+    // console.log("name", name);
     setError("");
+    setPage(1);
+    setUserName(name);
     if (name === "") {
       setUser([]);
     } else {
-      axios
-        .get(`https://rickandmortyapi.com/api/character/?name=${name}`)
-        .then(({ data }) => {
-          // console.log("name", name);
-          // console.log(data.results);
-          setUser(data.results);
-        })
-        .catch((err) => {
-          // console.log(err.message);
-          setError(err.message);
-        });
+      getData(name);
     }
   }
+  const onScrollEnd = () => {
+    //console.log("page", page);
+    setLoading(true);
+    setTimeout(() => {
+      setPage(page + 1);
+      getData(userName);
+    }, 5000);
+  };
+  window.onscroll = function () {
+    if (
+      window.innerHeight + document.documentElement.scrollTop >=
+      document.documentElement.offsetHeight
+    ) {
+      onScrollEnd();
+    }
+  };
 
   return (
     <>
@@ -67,7 +97,7 @@ export const Search = () => {
               <Alert status="info">
                 <AlertIcon />
                 There was an error processing your request.... Please type valid
-                contact
+                contact...Data gets Over For this contact
               </Alert>
             </Box>
           ) : user?.length === 0 ? (
@@ -80,8 +110,9 @@ export const Search = () => {
           ) : (
             <Box>
               {user.map((userone) => {
-                return <UserCard key={userone.id} user={userone}></UserCard>;
+                return <UserCard user={userone}></UserCard>;
               })}
+              {loading && <AlertComponent />}
             </Box>
           )}
         </Stack>
