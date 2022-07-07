@@ -1,53 +1,67 @@
-import {
-  Flex,
-  Spacer,
-  Image,
-  Text,
-  Box,
- 
-  ButtonGroup,
-
-} from "@chakra-ui/react";
-import { Icon } from '@chakra-ui/react'
-import { BsSearch } from 'react-icons/Bs'
-import { CgProfile } from 'react-icons/Cg'
-import { BsCart4 } from 'react-icons/Bs'
+import { Flex, Spacer, Image, Text, Box, ButtonGroup } from "@chakra-ui/react";
+import { Link as ReactLink } from "react-router-dom";
+import { Icon } from "@chakra-ui/react";
+import { BsSearch } from "react-icons/Bs";
+import { CgProfile } from "react-icons/Cg";
+import { BsCart4 } from "react-icons/Bs";
 
 export const Navbar = () => {
   return (
-    <Flex
-      minWidth="max-content"
-      alignItems="center"
-      gap="2"
-      p="10"
-      width="90%"
-      m="auto"
-    >
-      <Box p="2">
-        <Image
-          src="https://1000logos.net/wp-content/uploads/2021/02/Flipkart-logo-500x281.png"
-          alt="Flipkart-logo"
-          height="55px"
-        />
-      </Box>
-      <Spacer />
-      <ButtonGroup gap="2">
-        <Text fontSize="md">Shop</Text>
+    <>
+      <Flex
+        minWidth="max-content"
+        alignItems="center"
+        gap="2"
+        width="98%"
+        height="40px"
+        m="auto"
+        p="10px"
+        style={{ border: "1px solid grey" }}
+      >
+        <Box p="2">
+          <ReactLink to="/">
+            <Image
+              src="https://1000logos.net/wp-content/uploads/2021/02/Flipkart-logo-500x281.png"
+              alt="Flipkart-logo"
+              height="75px"
+            />
+          </ReactLink>
+        </Box>
+        <Spacer />
+        <ButtonGroup gap="2">
+          <ReactLink to="/allCollection">
+            <Text fontSize="md">Shop</Text>
+          </ReactLink>
+          <Spacer />
+          <ReactLink to="/allCollection">
+            <Text fontSize="md">Men</Text>
+          </ReactLink>
+          <Spacer />
+          <ReactLink to="/allCollection">
+            <Text fontSize="md">Women</Text>
+          </ReactLink>
+          <Spacer />
+          <ReactLink to="/allCollection">
+            <Text fontSize="md">New Arrival</Text>
+          </ReactLink>
+          <Spacer />
+          <ReactLink to="/allCollection">
+            <Text fontSize="md">About</Text>
+          </ReactLink>
+          <Spacer />
+          <ReactLink to="/allCollection">
+            <Text fontSize="md">Help</Text>
+          </ReactLink>
+          <Spacer />
+        </ButtonGroup>
 
-        <Text fontSize="md">Men</Text>
+        <Icon as={BsSearch} m={10} />
 
-        <Text fontSize="md">Women</Text>
+        <Icon as={CgProfile} m={10} />
 
-        <Text fontSize="md">New Arrival</Text>
-
-        <Text fontSize="md">About</Text>
-
-        <Text fontSize="md">Help</Text>
-       
-      </ButtonGroup>
-      <Icon as={BsSearch} />
-      <Icon as={CgProfile} />
-      <Icon as={BsCart4} />
-    </Flex>
+        <Icon as={BsCart4} />
+        <Text>0</Text>
+      </Flex>
+    </>
   );
 };
