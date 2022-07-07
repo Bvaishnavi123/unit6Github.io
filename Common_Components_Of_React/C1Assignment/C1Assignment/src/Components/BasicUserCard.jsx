@@ -4,7 +4,6 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
- 
   ModalBody,
   ModalCloseButton,
   useDisclosure,
@@ -14,10 +13,9 @@ import {
 import { useState } from "react";
 import axios from "axios";
 export const UserCard = (props) => {
-  const { id, image, name, status, species,origin} = props.user;
+  const { id, image, name, status, species, origin } = props.user;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [user, setUser] = useState({});
-  
 
   const clickHandler = (e) => {
     axios
@@ -25,18 +23,15 @@ export const UserCard = (props) => {
       .then(({ data }) => {
         setUser(data);
       });
-     
   };
- 
 
   return (
-    
     <Box
       boxShadow="xs"
       p="6"
       rounded="md"
       bg="white"
-      style={{ marginBottom: "10px"}}
+      style={{ marginBottom: "10px" }}
       onClick={() => {
         onOpen();
         clickHandler(id);
@@ -69,11 +64,11 @@ export const UserCard = (props) => {
           </Center>
         </Center>
       </WrapItem>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody p={6}>
             <Box
               style={{
                 display: "flex",
@@ -88,51 +83,60 @@ export const UserCard = (props) => {
               <div
                 style={{
                   padding: "10px",
-                  width: "90%",
+                  width: "60%",
                   display: "flex",
                   justifyContent: "space-around",
                   alignItems: "center",
                 }}
               >
                 <div>
-                  <Circle
-                    size="10px"
-                    bg={user.status === "Alive" ? "green" : "grey"}
-                    color="white"
-                  ></Circle>
-                </div>
-                <div>
-                  <Text>{user.name}</Text>
-                  <Text>{user.status + " - " + user.species}</Text>
+                  <Text  fontSize='2xl' style={{fontWeight:'bold'}}>{user.name}</Text>
+
+                  <div
+                    style={{
+                      padding: "10px",
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Circle
+                      size="10px"
+                      bg={user.status === "Alive" ? "green" : "grey"}
+                      color="white"
+                    ></Circle>
+                    <Text ml="10px">{user.status + " - " + user.species}</Text>
+                  </div>
                 </div>
               </div>
             </Box>
             <br />
             <hr />
             <br />
-            
+
             <Box w="70%" mx="auto">
               <Flex>
-                <Box  w='40%'>
+                <Box w="40%">
                   <Text>Gender</Text>
-                  <Text>{user.gender}</Text>
+                  <Text fontSize='1xl' style={{fontWeight:'bold'}}>{user.gender}</Text>
                 </Box>
                 <Spacer />
-                <Box w='50%'>
-                <Text>Location</Text>
-                  {/* <Text>{user.location.name}</Text> */}
+                <Box w="50%">
+                  <Text>Location</Text>
+                  {/* <Text fontSize='1xl' style={{fontWeight:'bold'}}>{user.location.name}</Text> */}
                 </Box>
               </Flex>
               <br />
               <Flex>
-                <Box w='50%'>
-                <Text>Species</Text>
-                  <Text>{user.species}</Text>
+                <Box w="50%">
+                  <Text>Species</Text>
+                  <Text fontSize='1xl' style={{fontWeight:'bold'}}>{user.species}</Text>
                 </Box>
                 <Spacer />
-                <Box w='50%'>
-                <Text>Origin</Text>
-                  {/* <Text>{user["location"]}</Text> */}
+                <Box w="50%">
+                  <Text>Origin</Text>
+                  {/* <Text fontSize='1xl' style={{fontWeight:'bold'}}>{user["location"]}</Text> */}
                 </Box>
               </Flex>
             </Box>
