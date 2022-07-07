@@ -4,12 +4,8 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { UserCard } from "./BasicUserCard";
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-} from '@chakra-ui/react'
+import { Alert, AlertIcon } from "@chakra-ui/react";
+import useInfiniteScroll from 'react-infinite-scroll-hook';
 
 function debounce(func, wait) {
   let timeout;
@@ -66,15 +62,22 @@ export const Search = () => {
               onChange={(e) => debounceOnChange(e.target.value)}
             />
           </InputGroup>
-          {error? (
-            <Box p={2}><Alert status='info'>
-            <AlertIcon />
-            There was an error processing your request.... Please type valid contact
-          </Alert></Box>
-          ) : user?.length===0 ?<Box p={2}><Alert status='info'>
-          <AlertIcon />
-          Type Something
-        </Alert></Box>:(
+          {error ? (
+            <Box p={2}>
+              <Alert status="info">
+                <AlertIcon />
+                There was an error processing your request.... Please type valid
+                contact
+              </Alert>
+            </Box>
+          ) : user?.length === 0 ? (
+            <Box p={2}>
+              <Alert status="info">
+                <AlertIcon />
+                Type Something
+              </Alert>
+            </Box>
+          ) : (
             <Box>
               {user.map((userone) => {
                 return <UserCard key={userone.id} user={userone}></UserCard>;
