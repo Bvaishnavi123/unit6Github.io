@@ -14,16 +14,17 @@ import {
 import { useState } from "react";
 import axios from "axios";
 export const UserCard = (props) => {
-  const { id, image, name, status, species } = props.user;
+  const { id, image, name, status, species, location } = props.user;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [user, setUser] = useState({});
+  const [Currlocation, setLocation] = useState('');
+  const [Currorigin, setOrigin] = useState('');
+
 
   const clickHandler = (e) => {
-    axios
-      .get(`https://rickandmortyapi.com/api/character/${e}`)
-      .then(({ data }) => {
-        setUser(data);
-      });
+    setUser(e);
+    setLocation(e.location.name);
+    setOrigin(e.origin.name)
   };
 
   return (
@@ -34,8 +35,8 @@ export const UserCard = (props) => {
       bg="white"
       style={{ marginBottom: "10px" }}
       onClick={() => {
+        clickHandler(props.user);
         onOpen();
-        clickHandler(id);
       }}
     >
       <WrapItem>
@@ -65,7 +66,7 @@ export const UserCard = (props) => {
           </Center>
         </Center>
       </WrapItem>
-      <Modal isOpen={isOpen} onClose={onClose} >
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
@@ -91,7 +92,9 @@ export const UserCard = (props) => {
                 }}
               >
                 <div>
-                  <Text  fontSize='2xl' style={{fontWeight:'bold'}}>{user.name}</Text>
+                  <Text fontSize="2xl" style={{ fontWeight: "bold" }}>
+                    {user.name}
+                  </Text>
 
                   <div
                     style={{
@@ -120,24 +123,28 @@ export const UserCard = (props) => {
               <Flex>
                 <Box w="40%">
                   <Text>Gender</Text>
-                  <Text fontSize='1xl' style={{fontWeight:'bold'}}>{user.gender}</Text>
+                  <Text fontSize="1xl" style={{ fontWeight: "bold" }}>
+                    {user.gender}
+                  </Text>
                 </Box>
                 <Spacer />
                 <Box w="50%">
                   <Text>Location</Text>
-                  {/* <Text fontSize='1xl' style={{fontWeight:'bold'}}>{user.location.name}</Text> */}
+                  <Text fontSize='1xl' style={{fontWeight:'bold'}}>{Currlocation}</Text>
                 </Box>
               </Flex>
               <br />
               <Flex>
                 <Box w="50%">
                   <Text>Species</Text>
-                  <Text fontSize='1xl' style={{fontWeight:'bold'}}>{user.species}</Text>
+                  <Text fontSize="1xl" style={{ fontWeight: "bold" }}>
+                    {user.species}
+                  </Text>
                 </Box>
                 <Spacer />
                 <Box w="50%">
                   <Text>Origin</Text>
-                  {/* <Text fontSize='1xl' style={{fontWeight:'bold'}}>{user["location"]}</Text> */}
+                  <Text fontSize='1xl' style={{fontWeight:'bold'}}>{Currorigin}</Text>
                 </Box>
               </Flex>
             </Box>

@@ -25,6 +25,8 @@ export const Search = () => {
   const [page, setPage] = useState(1);
   const [userName, setUserName] = useState("");
   const [loading, setLoading] = useState(false);
+ 
+  
 
   const debounceOnChange = React.useCallback(debounce(onChange, 400), []);
 
@@ -45,6 +47,10 @@ export const Search = () => {
         setError(err.message);
       });
   };
+  const clickHandler = (e)=>{
+  
+    console.log("singleUser");
+  }
   function onChange(name) {
     // console.log("name", name);
     setError("");
