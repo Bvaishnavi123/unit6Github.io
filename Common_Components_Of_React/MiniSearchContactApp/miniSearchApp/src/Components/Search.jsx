@@ -6,6 +6,7 @@ import axios from "axios";
 import { UserCard } from "./BasicUserCard";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 import { AlertComponent } from "./Alert";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function debounce(func, wait) {
   let timeout;
@@ -22,61 +23,45 @@ function debounce(func, wait) {
 export const Search = () => {
   const [user, setUser] = useState([]);
   const [error, setError] = useState("");
-  const [page, setPage] = useState(1);
-  const [userName, setUserName] = useState("");
-  const [loading, setLoading] = useState(false);
- 
-  
-
+  const [name, setName] = useState("");
   const debounceOnChange = React.useCallback(debounce(onChange, 400), []);
 
-  const getData = (name) => {
+  const getData = (val) => {
+    let PageNo = Math.ceil(user.length / 20) + 1;
     axios
       .get(
-        `https://rickandmortyapi.com/api/character/?name=${name}&page=${page}`
+        `https://rickandmortyapi.com/api/character/?name=${val}&page=${PageNo}`
       )
       .then(({ data }) => {
         // console.log("name", name);
         // console.log(data.results);
 
         setUser([...user, ...data.results]);
-        setLoading(false);
+        // setLoading(false);
       })
       .catch((err) => {
         // console.log(err.message);
         setError(err.message);
       });
   };
-  const clickHandler = (e)=>{
-  
-    console.log("singleUser");
-  }
-  function onChange(name) {
-    // console.log("name", name);
+
+  function onChange(v) {
+    setName(v);
+
     setError("");
-    setPage(1);
-    setUserName(name);
-    if (name === "") {
+
+    // setUserName(name);
+    if (v === "") {
       setUser([]);
     } else {
-      getData(name);
+      getData(v);
     }
   }
-  const onScrollEnd = () => {
-    //console.log("page", page);
-    setLoading(true);
+  // console.log("name", name);
+  const fetchMoreData = () => {
     setTimeout(() => {
-      setPage(page + 1);
-      getData(userName);
-    }, 5000);
-  };
-  window.onscroll = function () {
-    if (
-      window.innerHeight + document.documentElement.scrollTop >=
-      document.documentElement.offsetHeight
-    ) {
-      onScrollEnd();
-    }
+      getData(name);
+    }, 2000);
   };
 
   return (
@@ -114,12 +99,19 @@ export const Search = () => {
               </Alert>
             </Box>
           ) : (
-            <Box>
-              {user.map((userone) => {
-                return <UserCard user={userone}></UserCard>;
-              })}
-              {loading && <AlertComponent />}
-            </Box>
+            <>
+              <InfiniteScroll
+                dataLength={user.length}
+                next={fetchMoreData}
+                hasMore={true}
+                loader={<AlertComponent />}
+              >
+                {user.map((userone) => {
+                  return <UserCard user={userone}></UserCard>;
+                })}
+              </InfiniteScroll>
+             
+            </>
           )}
         </Stack>
       </Box>
